@@ -1,0 +1,8 @@
+[workspace]
+name = "my_bot"
+version = "0.1.0"
+
+members = [
+  "sample_bot",
+  "v1",
+]
