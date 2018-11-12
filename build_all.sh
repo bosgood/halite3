@@ -2,7 +2,7 @@
 #set -x # echo
 set -e # stop the presses
 
-TOMLS=$(fd Cargo.toml -d 2)
+TOMLS=$(find . -name Cargo.toml -depth 2)
 for t in $TOMLS; do
     cd $(dirname $t)
     # rustup run 1.20.0 cargo rustc --release -q -Awarnings
