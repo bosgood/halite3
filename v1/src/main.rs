@@ -2,19 +2,17 @@
 extern crate lazy_static;
 extern crate rand;
 
-use hlt::bot::Bot;
-use hlt::command::Command;
-use hlt::direction::Direction;
+use bot::bot::Bot;
 use hlt::game::Game;
 use hlt::log::Log;
 use hlt::navi::Navi;
-use rand::Rng;
+use rand::prng::XorShiftRng;
 use rand::SeedableRng;
-use rand::XorShiftRng;
 use std::env;
 use std::time::SystemTime;
 use std::time::UNIX_EPOCH;
 
+mod bot;
 mod hlt;
 
 fn main() {
@@ -30,7 +28,7 @@ fn main() {
   let seed_bytes: Vec<u8> = (0..16)
     .map(|x| ((rng_seed >> (x % 8)) & 0xFF) as u8)
     .collect();
-  let mut rng: XorShiftRng = SeedableRng::from_seed([
+  let rng: XorShiftRng = SeedableRng::from_seed([
     seed_bytes[0],
     seed_bytes[1],
     seed_bytes[2],
@@ -61,12 +59,13 @@ fn main() {
     game.my_id.0, rng_seed
   ));
 
-  let mut bot = Bot::new();
+  let mut bot = Bot::new(rng);
   loop {
     game.update_frame();
     navi.update_frame(&game);
 
-    let command_queue = bot.play_turn(game);
+    bot = bot.advance();
+    let command_queue = bot.play_turn(&game, &navi);
     Game::end_turn(&command_queue);
   }
 }
