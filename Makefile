@@ -42,7 +42,7 @@ zip: needs_name clean deepclean
 upload: zip
 	# TODO: this wasn't working last time, defaulting to web uploader
 	# pipenv run hlt bot -b packaged_$(BOT).zip
-	open -a "Google Chrome" https://halite.io/play-programming-challenge
+	open -a "Firefox" https://halite.io/play-programming-challenge
 	open .
 
 
@@ -55,7 +55,7 @@ bootstrap:
 .PHONY: view
 view:
 	# drag and drop your local replay file into the viewer
-	@open -a "Google Chrome" https://halite.io/watch-games
+	@open -a "Firefox" https://halite.io/watch-games
 	@open replays/
 
 .PHONY: register
