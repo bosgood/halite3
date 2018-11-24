@@ -52,7 +52,7 @@ fn main() {
   // At this point "game" variable is populated with initial map data.
   // This is a good place to do computationally expensive start-up pre-processing.
   // As soon as you call "ready" function below, the 2 second per turn timer will start.
-  Game::ready("sample_bot");
+  Game::ready("v1");
 
   Log::log(&format!(
     "Successfully created bot! My Player ID is {}. Bot rng seed is {}.",
