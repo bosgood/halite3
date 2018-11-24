@@ -29,6 +29,7 @@ fi
 echo "working from temp directory: ${build}"
 cp -R "$1" "${build}"
 cd "${build}"
+sed -i '' 's/name = "v1"/name = "my_bot"/' Cargo.toml
 echo "creating bundle ${bundle} with directory contents"
 zip -r "${bundle}" *
 cd "${root}"
