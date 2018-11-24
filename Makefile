@@ -12,11 +12,11 @@ run: needs_name build
 
 .PHONY: build
 build:
-	./build_all.sh
+	@./build_all.sh
 
 .PHONY: release
 release:
-	./release_all.sh
+	@./release_all.sh
 
 .PHONY: clean
 clean:
@@ -25,7 +25,7 @@ clean:
 
 .PHONY: deepclean
 deepclean:
-	./deep_clean.sh
+	@./deep_clean.sh
 
 .PHONY: needs_name
 needs_name:
@@ -35,7 +35,7 @@ endif
 
 .PHONY: zip
 zip: needs_name clean deepclean
-	./make_upload.sh $(BOT)
+	@./make_upload.sh $(BOT)
 
 # broken don't use
 .PHONY: upload
@@ -55,8 +55,8 @@ bootstrap:
 .PHONY: view
 view:
 	# drag and drop your local replay file into the viewer
-	open -a "Google Chrome" https://halite.io/watch-games
-	open replays/
+	@open -a "Google Chrome" https://halite.io/watch-games
+	@open replays/
 
 .PHONY: register
 register: needs_name
