@@ -39,12 +39,8 @@ zip: needs_name clean deepclean
 
 # broken don't use
 .PHONY: upload
-upload: zip
-	# TODO: this wasn't working last time, defaulting to web uploader
-	# pipenv run hlt bot -b packaged_$(BOT).zip
-	open -a "Firefox" https://halite.io/play-programming-challenge
-	open .
-
+upload: needs_name zip
+	pipenv run python -m hlt_client bot -b packaged_$(BOT).zip upload
 
 .PHONY: bootstrap
 bootstrap:
@@ -63,6 +59,10 @@ register: needs_name
 	# for example
 	# pipenv run python -m hlt_client gym register DistanceBasedGoalSetter(9.98) "RUST_BACKTRACE=1 target/debug/DistanceBasedGoalSetter 9 98"
 	pipenv run python -m hlt_client gym register $(BOT) "RUST_BACKTRACE=1 target/release/$(BOT)"
+
+.PHONY: deregister
+deregister: needs_name
+	yes | pipenv run python -m hlt_client gym deregister "$(BOT)"
 
 .PHONY: gym
 gym: release
