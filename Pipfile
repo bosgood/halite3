@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 appdirs = "*"
 trueskill = "*"
+requests = "*"
+zstd = "*"
 
 [dev-packages]
 "flake8" = "*"
