@@ -62,7 +62,7 @@ view:
 register: needs_name
 	# for example
 	# pipenv run python -m hlt_client gym register DistanceBasedGoalSetter(9.98) "RUST_BACKTRACE=1 target/debug/DistanceBasedGoalSetter 9 98"
-	pipenv run python -m hlt_client gym register $(BOT) "RUST_BACKTRACE=1 target/debug/$(BOT)"
+	pipenv run python -m hlt_client gym register $(BOT) "RUST_BACKTRACE=1 target/release/$(BOT)"
 
 .PHONY: gym
 gym: release
